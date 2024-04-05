@@ -33,6 +33,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LT1 LT(1, KC_TAB)
 #define LT2 LT(2, KC_BSPC)
 
+// shift backspace = delete
+// const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+const key_override_t backspace_key_override = ko_make_basic(MOD_MASK_SHIFT, LT(2, KC_BSPC), KC_DEL);// Backspace is delete when on shift
+
+// This globally defines all key overrides to be used
+const key_override_t **key_overrides = (const key_override_t *[]){
+    // &delete_key_override,
+    &backspace_key_override,
+    NULL // Null terminate the array of overrides!
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -55,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, KC_PSCR, KC_CAPS, XXXXXXX, SE_EXLM, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, XXXXXXX,  KC_SPC,     KC_ENT, XXXXXXX, XXXXXXX
+                                          XXXXXXX, XXXXXXX,  KC_SPC,     KC_ENT, KC_BSPC, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
 

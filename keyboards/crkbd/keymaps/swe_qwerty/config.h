@@ -34,12 +34,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET // Activates the double-tap behavior
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 200U // Timeout window in ms in which the double tap can occur.
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_LED D5 // Specify an optional status LED by GPIO number which blinks when entering the bootloader
-// solving not detecting keyboard after boot #undef SPLIT
+
+// solving not detecting keyboard after cold boot
 #ifdef SPLIT_USB_DETECT
 #undef SPLIT_USB_DETECT
 #endif
+#define USB_VBUS_PIN 19 //pinout on frood42 from 42keebs
+
+// alternative non optimal solution
 // #define SPLIT_USB_TIMEOUT 10000
-// #define SPLIT_USB_TIMEOUT_POLL 10
+// #define SPLIT_USB_TIMEOUT_POLL 25
 
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
